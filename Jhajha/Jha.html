@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Password Protected Gallery</title>
+  <style>
+    body{margin:0;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;background:#111;color:#eee}
+    .box{background:#222;padding:20px;border-radius:10px;width:90%;max-width:800px}
+    input,button{padding:10px;margin:5px;border-radius:5px;border:none}
+    button{background:#4cafef;color:#000;cursor:pointer}
+    #gallery{display:none;margin-top:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+    img,video{width:100%;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Protected Gallery</h2>
+    <input id="pwd" type="password" placeholder="Enter password">
+    <button onclick="checkPass()">Unlock</button>
+    <p id="msg" style="color:red"></p>
+    <div id="gallery">
+      <h3>My Media</h3>
+      <div class="grid">
+        <img src="media/1s.jpg" alt="">
+        <img src="media/1sv.jpg" alt="">
+        <video controls><source src="media/2s.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+  </div>
+  <script>
+    const PASSWORD = "secret123"; // 👈 change this
+    function checkPass(){
+      let pw = document.getElementById("pwd").value;
+      if(pw === PASSWORD){
+        document.getElementById("gallery").style.display="block";
+        document.getElementById("msg").textContent="";
+      }else{
+        document.getElementById("msg").textContent="Wrong password!";
+      }
+    }
+  </script>
+</body>
+</html>
